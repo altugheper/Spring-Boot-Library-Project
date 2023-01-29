@@ -13,10 +13,8 @@ public class BookService {
     @Autowired
     private BookRepository bookRepository;
 
-    public List<Book> getAll(){
+
+    public List<Book> getAll() {
         return bookRepository.findAll();
     }
-
-
-
 }
