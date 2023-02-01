@@ -1,6 +1,7 @@
 package com.tpe.service;
 
 import com.tpe.domain.Book;
+import com.tpe.exception.ConflictException;
 import com.tpe.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,5 +20,9 @@ public class BookService {
     }
 
     public void createBook(Book book) {
+        if (bookRepository.existsByBookName(book.getBookName())){
+            throw new ConflictException("Book already exists");
+        }
+        bookRepository.save(book);
     }
 }
