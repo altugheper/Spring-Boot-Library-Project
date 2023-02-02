@@ -35,7 +35,15 @@ public class BookController { // http://localhost:8080/books
 
         return new ResponseEntity<>(map, HttpStatus.CREATED);
     }
-    // 2. --> 02:01
+
+    @GetMapping("/query") // http://localhost:8080/books/query?id=1
+    public ResponseEntity<Book> getBook(@RequestParam("id") Long id){
+        Book book = bookService.findStudent(id);
+        return ResponseEntity.ok(book);
+    }
+
+    // 3 --> 1601
+
 
 
 }

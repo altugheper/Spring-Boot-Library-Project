@@ -26,7 +26,7 @@ spring:
 
 logging:   #logging
   file:
-    name: log/studentapp.log
+    name: log/bookapp.log
   pattern:
     file: "%d %-5level [%thread] %logger:%msg%n"
   level:

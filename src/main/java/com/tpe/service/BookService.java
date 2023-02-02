@@ -2,6 +2,7 @@ package com.tpe.service;
 
 import com.tpe.domain.Book;
 import com.tpe.exception.ConflictException;
+import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,11 @@ public class BookService {
             throw new ConflictException("Book already exists");
         }
         bookRepository.save(book);
+    }
+
+    public Book findStudent(Long id) {
+       return bookRepository.findById(id).orElseThrow(
+                ()->new ResourceNotFoundException("Book is not found" + id));
+
     }
 }

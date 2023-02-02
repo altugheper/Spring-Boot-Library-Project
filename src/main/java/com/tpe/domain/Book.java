@@ -32,6 +32,11 @@ public class Book {
     @Column(nullable = false,length = 25)
     private String authorName;
 
+
+    private Integer pages;
+
+
+
     @Setter(AccessLevel.NONE)
     private LocalDateTime createDate = LocalDateTime.now();
 }
