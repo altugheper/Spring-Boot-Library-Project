@@ -38,11 +38,29 @@ public class BookController { // http://localhost:8080/books
 
     @GetMapping("/query") // http://localhost:8080/books/query?id=1
     public ResponseEntity<Book> getBook(@RequestParam("id") Long id){
-        Book book = bookService.findStudent(id);
+        Book book = bookService.findBook(id);
         return ResponseEntity.ok(book);
     }
 
-    // 3 --> 1601
+    @GetMapping("{id}") // http://localhost:8080/books/1
+    public ResponseEntity<Book> getBookWithPath(@PathVariable("id") Long id){
+        Book book = bookService.findBook(id);
+        return ResponseEntity.ok(book);
+    }
+
+    @DeleteMapping("/{id}") // http://localhost:8080/books/1 + DELETE
+    public ResponseEntity<Map<String, String>> deleteBook(@PathVariable("id") Long id){
+
+        bookService.deleteBook(id);
+
+        Map<String, String> map = new HashMap<>();
+        map.put("message", "Book is deleted succesfully");
+        map.put("status", "true");
+
+        return new  ResponseEntity<>(map, HttpStatus.CREATED);
+    }
+
+    // 3 --> 42:00
 
 
 

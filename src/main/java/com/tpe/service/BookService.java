@@ -27,9 +27,14 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    public Book findStudent(Long id) {
+    public Book findBook(Long id) {
        return bookRepository.findById(id).orElseThrow(
                 ()->new ResourceNotFoundException("Book is not found" + id));
 
+    }
+
+    public void deleteBook(Long id) {
+        Book book = findBook(id);
+        bookRepository.delete(book);
     }
 }
