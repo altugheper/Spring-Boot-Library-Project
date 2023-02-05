@@ -60,7 +60,18 @@ public class BookController { // http://localhost:8080/books
         return new  ResponseEntity<>(map, HttpStatus.CREATED);
     }
 
-    // 3 --> 42:00
+    @PutMapping("{id}") // http://localhost:8080/books/1 + PUT
+    public ResponseEntity<Map<String,String>> updateBook(@PathVariable("id") Long id, @Valid
+                                                         @RequestBody Book book){
+        bookService.updateBook(id,book);
+
+        Map<String,String> map = new HashMap<>();
+        map.put("message","Book is updated successfully");
+        map.put("status", "true");
+
+        return new ResponseEntity<>(map,HttpStatus.OK);
+    }
+    // 3 --> 49:00
 
 
 

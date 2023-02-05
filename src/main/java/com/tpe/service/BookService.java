@@ -37,4 +37,7 @@ public class BookService {
         Book book = findBook(id);
         bookRepository.delete(book);
     }
+
+    public void updateBook(Long id, Book book) {
+    }
 }
