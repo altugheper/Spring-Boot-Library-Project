@@ -1,8 +1,7 @@
 package com.tpe.dto;
 
 import com.tpe.domain.Book;
-import lombok.AccessLevel;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -10,8 +9,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
-@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BookDTO {
+
 
 
     private Long id;
@@ -40,7 +43,5 @@ public class BookDTO {
         this.pages = book.getPages();
         this.createDate = book.getCreateDate();
     }
-
-    // 3 --> 1:37
 
 }
