@@ -6,6 +6,8 @@ import com.tpe.exception.ConflictException;
 import com.tpe.exception.ResourceNotFoundException;
 import com.tpe.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,5 +50,9 @@ public class BookService {
         bookRepository.save(book);
     }
 
-    // 3 --> 2:07
+    public Page<Book> getAllWithPage(Pageable pageable) {
+        return bookRepository.findAll(pageable);
+    }
+
+
 }

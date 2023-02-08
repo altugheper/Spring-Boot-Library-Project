@@ -1,8 +1,13 @@
 package com.tpe.controller;
 
 import com.tpe.domain.Book;
+import com.tpe.dto.BookDTO;
 import com.tpe.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -62,8 +67,8 @@ public class BookController { // http://localhost:8080/books
 
     @PutMapping("{id}") // http://localhost:8080/books/1 + PUT
     public ResponseEntity<Map<String,String>> updateBook(@PathVariable("id") Long id, @Valid
-                                                         @RequestBody Book book){
-        bookService.updateBook(id,book);
+                                                         @RequestBody BookDTO bookDTO){
+        bookService.updateBook(id,bookDTO);
 
         Map<String,String> map = new HashMap<>();
         map.put("message","Book is updated successfully");
@@ -71,7 +76,22 @@ public class BookController { // http://localhost:8080/books
 
         return new ResponseEntity<>(map,HttpStatus.OK);
     }
-    // 3 --> 49:00
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<Book>> getAllWithPage(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestParam("sort") String prop,
+            @RequestParam("direction")Sort.Direction direction){
+
+        Pageable pageable = PageRequest.of(page,size,Sort.by(direction,prop));
+        Page<Book> bookPage = bookService.getAllWithPage(pageable);
+        return ResponseEntity.ok(bookPage);
+    }
+
+    // 4
+
+
 
 
 
