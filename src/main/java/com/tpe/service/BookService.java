@@ -55,4 +55,7 @@ public class BookService {
     }
 
 
+    public List<Book> findBook(String authorName){
+        return bookRepository.findByAuthorName(authorName);
+    }
 }

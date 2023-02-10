@@ -91,12 +91,12 @@ public class BookController { // http://localhost:8080/books
 
     @GetMapping("/queryauthorname") // http://localhost:8080/books/queryauthorname
     public ResponseEntity<List<Book>> getBookByAuthorName(@RequestParam("authorName")String authorName){
-        List<Map> list = bookService.findBook(authorName);
+        List<Book> list = bookService.findBook(authorName);
 
-        return ResponseEntity.ok(list)
+        return ResponseEntity.ok(list);
     }
 
-    // 4 --> 1:09
+    // 4 --> 1:14
 
 
 
