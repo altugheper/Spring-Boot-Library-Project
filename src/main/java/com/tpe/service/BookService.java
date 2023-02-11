@@ -58,4 +58,8 @@ public class BookService {
     public List<Book> findBook(String authorName){
         return bookRepository.findByAuthorName(authorName);
     }
+
+    public List<Book> findAllEqualsPages(Integer pages) {
+        return bookRepository.findAllEqualsPages(pages);
+    }
 }

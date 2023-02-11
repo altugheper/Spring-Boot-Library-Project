@@ -96,8 +96,15 @@ public class BookController { // http://localhost:8080/books
         return ResponseEntity.ok(list);
     }
 
-    // 4 --> 1:14
 
+    @GetMapping("/pages/{pages}") // http://localhost:8080/books/pages/1101
+    public ResponseEntity<List<Book>> getBooksEqualsPages(@PathVariable("pages") Integer pages){
+        List<Book> list = bookService.findAllEqualsPages(pages);
+
+        return ResponseEntity.ok(list);
+    }
+
+    // 4 --> 1:44
 
 
 
