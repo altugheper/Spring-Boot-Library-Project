@@ -62,4 +62,7 @@ public class BookService {
     public List<Book> findAllEqualsPages(Integer pages) {
         return bookRepository.findAllEqualsPages(pages);
     }
+
+    public BookDTO findBookDTOById(Long id) {
+    }
 }
