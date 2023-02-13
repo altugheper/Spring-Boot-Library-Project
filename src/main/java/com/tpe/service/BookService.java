@@ -64,5 +64,8 @@ public class BookService {
     }
 
     public BookDTO findBookDTOById(Long id) {
+        return bookRepository.findBookDTOById(id).orElseThrow(()->
+                new ResourceNotFoundException("Student not found with id: " + id));
+
     }
 }

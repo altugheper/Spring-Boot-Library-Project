@@ -110,6 +110,7 @@ public class BookController { // http://localhost:8080/books
     @GetMapping("query/dto") // http://localhost:8080/books/query/dto?id=1
     public ResponseEntity<BookDTO> getBookDTO(@RequestParam("id") Long id){
         BookDTO bookDTO = bookService.findBookDTOById(id);
+        return ResponseEntity.ok(bookDTO);
     }
 
 
