@@ -3,6 +3,8 @@ package com.tpe.controller;
 import com.tpe.domain.Book;
 import com.tpe.dto.BookDTO;
 import com.tpe.service.BookService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +22,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/books")
 public class BookController { // http://localhost:8080/books
+
+    Logger logger = LoggerFactory.getLogger(BookController.class);
 
     @Autowired
     private BookService bookService;
@@ -104,7 +108,7 @@ public class BookController { // http://localhost:8080/books
         return ResponseEntity.ok(list);
     }
 
-    // 4 --> 2:21
+    // 5 --> 1:04
 
     // Getting data from DB as DTO
     @GetMapping("query/dto") // http://localhost:8080/books/query/dto?id=1
