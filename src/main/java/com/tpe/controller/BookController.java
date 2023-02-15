@@ -86,7 +86,7 @@ public class BookController { // http://localhost:8080/books
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sort") String prop,
-            @RequestParam("direction")Sort.Direction direction){
+            @RequestParam(value = "direction")Sort.Direction direction){
 
         Pageable pageable = PageRequest.of(page,size,Sort.by(direction,prop));
         Page<Book> bookPage = bookService.getAllWithPage(pageable);
