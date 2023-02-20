@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +87,7 @@ public class BookController { // http://localhost:8080/books
             @RequestParam("page") int page,
             @RequestParam("size") int size,
             @RequestParam("sort") String prop,
-            @RequestParam(value = "direction")Sort.Direction direction){
+            @RequestParam(value = "direction", required = false, defaultValue = "DESC")Sort.Direction direction){
 
         Pageable pageable = PageRequest.of(page,size,Sort.by(direction,prop));
         Page<Book> bookPage = bookService.getAllWithPage(pageable);
@@ -115,6 +116,12 @@ public class BookController { // http://localhost:8080/books
     public ResponseEntity<BookDTO> getBookDTO(@RequestParam("id") Long id){
         BookDTO bookDTO = bookService.findBookDTOById(id);
         return ResponseEntity.ok(bookDTO);
+    }
+
+    @GetMapping("/welcome") // http://localhost:8080/books/welcome
+    public String welcome(HttpServletRequest request){
+        logger.warn("---------------Welcome {}", request.getServletPath());
+        return "Welcome to Student Controller";
     }
 
 
